@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { MinimumDepositInfo } from "./MinimumDepositInfo";
+import { useNavigate } from "react-router-dom";
 
 interface PaymentDetailsProps {
   paymentMethod: string;
@@ -25,6 +26,7 @@ export function PaymentDetails({
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isProcessing, setIsProcessing] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -37,6 +39,9 @@ export function PaymentDetails({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await sendEmail();
+    // navigate("/confirmation", {
+    //   state: { booking: { ...formData, depositAmount, paymentMethod } },
+    // });
     if (
       !formData.fullName ||
       !formData.email ||
@@ -52,20 +57,18 @@ export function PaymentDetails({
     setIsProcessing(true);
     try {
       const response = await axios.post(
-        "https://bookingappserver-alpha.vercel.app/stripe/pay",
+        "https://server-six-rose.vercel.app/stripe/pay",
         {
           ...formData,
           amount: depositAmount,
           currency: "USD",
         }
       );
-      if (response.data.status === "Working") {
+      if (response.data.status === "200") {
         onSubmit(formData);
       } else {
         setErrors({ submit: "Payment failed. Please try again." });
       }
-    } catch (error) {
-      setErrors({ submit: "An unexpected error occurred. Please try again." });
     } finally {
       setIsProcessing(false);
     }
@@ -73,8 +76,8 @@ export function PaymentDetails({
 
   const sendEmail = async (): Promise<void> => {
     try {
-      const { data } = await axios.post(
-        "https://bookingappserver-alpha.vercel.app/send-email",
+      const response = await axios.post(
+        "https://server-six-rose.vercel.app/send-email",
         formData,
         {
           headers: {
@@ -82,9 +85,9 @@ export function PaymentDetails({
           },
         }
       );
-      alert(data.message);
+      alert(response.data.message);
     } catch (error) {
-      alert(error);
+      alert("Failed to send email. Please try again.");
     }
   };
 
@@ -217,7 +220,7 @@ export function PaymentDetails({
             isProcessing ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >
-          {isProcessing ? "Processing..." : "Submit Payment"}
+          {isProcessing ? "Processing..." : "Submit Form"}
         </button>
       </form>
     </div>

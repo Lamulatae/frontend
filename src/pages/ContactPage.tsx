@@ -26,7 +26,7 @@ function ContactPage() {
 
     try {
       const response = await fetch(
-        "https://bookingappserver-alpha.vercel.app/contact-mail",
+        "https://server-six-rose.vercel.app/contact-mail",
         {
           method: "POST",
           headers: {
@@ -39,6 +39,8 @@ function ContactPage() {
           }),
         }
       );
+      console.log(response);
+
       if (response.ok) {
         alert("Thank you for reaching out!");
         navigate("/");
@@ -47,7 +49,7 @@ function ContactPage() {
         alert(result.error || "Something went wrong");
       }
     } catch (error) {
-      alert("Error submitting the form. Please try again.");
+      alert("Error submitting the form. Please try again.", error);
     } finally {
       setIsSubmitting(false);
     }
