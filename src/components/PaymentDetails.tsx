@@ -57,7 +57,7 @@ export function PaymentDetails({
     setIsProcessing(true);
     try {
       const response = await axios.post(
-        "https://server-six-rose.vercel.app/stripe/pay",
+        "https://updated-server-lamulatae.vercel.app/stripe/pay",
         {
           ...formData,
           amount: depositAmount,
@@ -77,7 +77,7 @@ export function PaymentDetails({
   const sendEmail = async (): Promise<void> => {
     try {
       const response = await axios.post(
-        "https://server-six-rose.vercel.app/send-email",
+        "https://updated-server-lamulatae.vercel.app/send-email",
         formData,
         {
           headers: {

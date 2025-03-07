@@ -26,7 +26,7 @@ function ContactPage() {
 
     try {
       const response = await fetch(
-        "https://server-six-rose.vercel.app/contact-mail",
+        "https://updated-server-lamulatae.vercel.app/contact-mail",
         {
           method: "POST",
           headers: {
@@ -39,7 +39,7 @@ function ContactPage() {
           }),
         }
       );
-      console.log(response);
+      // console.log(response);
 
       if (response.ok) {
         alert("Thank you for reaching out!");
