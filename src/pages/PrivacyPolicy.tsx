@@ -7,9 +7,9 @@ function PrivacyPolicy() {
 
       <div className="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <p className="text-gray-700 mb-6">
-          At Rental Club, your privacy is our top priority. This Privacy Policy
-          explains how we collect, use, and protect your personal information
-          when you use our event booking platform.
+          At our Restaurant, your privacy is our top priority. This Privacy
+          Policy explains how we collect, use, and protect your personal
+          information when you use our event booking platform.
         </p>
 
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">

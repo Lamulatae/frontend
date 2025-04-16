@@ -6,7 +6,7 @@ function CertifiedKitchen() {
     <div className="container mx-auto px-4 py-12 ">
       <div className="text-start">
         <h2 className="text-4xl font-bold text-gray-800 leading-tight mb-4">
-          Certified Kitchen Rental
+          Certified Kitchen Restaurant
         </h2>
       </div>
 
